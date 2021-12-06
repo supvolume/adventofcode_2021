@@ -37,5 +37,38 @@ for i in flat:
     if i >1:
         count+=1
 
-print(count)
+print("Part 1 ans: ", count)
 
+
+# Part 2
+for line in lines:
+    if line[0][0] != line[1][0] and line[0][1] != line[1][1]:
+        if line[0][0] < line[1][0] and line[0][1] < line[1][1]:
+            line_len = line[1][0]-line[0][0]
+            for i in range(0,line_len+1):
+                coor[line[0][1]+i][line[0][0]+i] +=1
+
+        elif line[0][0] > line[1][0] and line[0][1] < line[1][1]:
+            line_len = line[0][0]-line[1][0]
+            for i in range(0, line_len+1):
+                coor[line[0][1]+i][line[0][0]-i] +=1
+
+        elif line[0][0] > line[1][0] and line[0][1] > line[1][1]:
+            line_len = line[0][0]-line[1][0]
+            for i in range(0, line_len+1):
+                coor[line[0][1]-i][line[0][0]-i] +=1
+
+        elif line[0][0] < line[1][0] and line[0][1] > line[1][1]:
+            line_len = line[1][0]-line[0][0]
+            for i in range(0, line_len+1):
+                coor[line[0][1]-i][line[0][0]+i] +=1
+
+
+flat = [i for sub in coor for i in sub]
+
+count = 0
+for i in flat:
+    if i >1:
+        count+=1
+
+print("Part 2 ans: ", count)
